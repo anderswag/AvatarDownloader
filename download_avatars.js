@@ -20,19 +20,23 @@ var options = {
 
 function getRepoContributors(repoOwner, repoName, cb) {
   request(options, cb);
-
 }
 
 getRepoContributors(owner, repo, function(err,response,body){
   var data = JSON.parse(body);
-  for (var i = 0; i < data.length; i++){
 
+  if (err) {
+    throw err;
+  }
+
+  fs.mkdirSync('avatar');
+
+  for (var i = 0; i < data.length; i++){
   console.log(data);
   var destination = fs.createWriteStream(`./avatar/${data[i].login}.jpg`);
-
   request(data[i].avatar_url).pipe(destination);
+  }
 
-    }
 });
 
 
