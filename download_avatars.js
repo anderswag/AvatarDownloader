@@ -7,7 +7,7 @@ var owner = process.argv[2];
 var repo = process.argv[3];
 
 //Checks if we have a .env file
-if(!fs.existsSync('./.env')){
+if (!fs.existsSync('./.env')){
  throw '.env file does not exist';
 }
 
@@ -39,4 +39,5 @@ if (process.argv.length <= 4){
 } else {
   console.log("Please enter the proper number of parameters");
 }
+
 
