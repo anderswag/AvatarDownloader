@@ -2,3 +2,5 @@
 *.jpg
 node_modules
 .DS_Store
+.png
+avatars

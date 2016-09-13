@@ -15,15 +15,16 @@ if (!fs.existsSync('./.env')){
 var getRepoContributors = require('./repoUtil');
 var download = require('./downloadUtil');
 
-if (process.argv.length <= 4){
+// Checks that the number of arguments is correct
+if (process.argv.length <= 4 && process.argv.length > 3){
 
   getRepoContributors(owner, repo, function(err,response,body){
   var data = JSON.parse(body);
-
+  // CHECKS if .env file has the right credentials
   if (response.statusCode === 401){
-    throw 'Incorret credentials in .env file'
+    throw 'Incorret credentials in .env file';
   }
-
+  // Checks if the OWNER and REPOSITORY exist
   if (response.statusCode === 404){
     throw `The owner ${owner} with repository ${repo} does not exist`;
   }
