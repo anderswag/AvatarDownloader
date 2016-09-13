@@ -18,6 +18,7 @@
   "homepage": "https://github.com/anderswag/AvatarDownloader#readme",
   "dependencies": {
     "dotenv": "^2.0.0",
+    "fs": "0.0.1-security",
     "request": "^2.74.0"
   }
 }
