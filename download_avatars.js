@@ -1,6 +1,6 @@
+const dotenv = require('dotenv').config();
 var request = require('request');
 var fs = require('fs');
-var http = require('http');
 
 //var localPath = "/avatar";
 var owner = process.argv[2];
@@ -14,9 +14,13 @@ var options = {
     'User-Agent': 'Anderswag is the swaggiest'
   },
   auth: {
-    bearer: 'a57eacca0add7c446829e57a9cb7ce499cedbd64'
+    bearer: process.env.TOKEN
   }
 };
+
+
+
+console.log(options);
 
 function getRepoContributors(repoOwner, repoName, cb) {
   request(options, cb);
@@ -29,14 +33,15 @@ getRepoContributors(owner, repo, function(err,response,body){
     throw err;
   }
 
-  fs.mkdirSync('avatar');
-
-  for (var i = 0; i < data.length; i++){
-  console.log(data);
-  var destination = fs.createWriteStream(`./avatar/${data[i].login}.jpg`);
-  request(data[i].avatar_url).pipe(destination);
+  if(!fs.existsSync('avatar')){
+    fs.mkdirSync('avatar');
   }
 
+  for (var i = 0; i < data.length; i++){
+    console.log(data);
+    var destination = fs.createWriteStream(`./avatar/${data[i].login}.jpg`);
+    request(data[i].avatar_url).pipe(destination);
+  }
 });
 
 
