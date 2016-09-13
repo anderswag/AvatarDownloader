@@ -18,8 +18,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
-  console.log('Getting images from github');
-
   request(options, cb);
 }
 
