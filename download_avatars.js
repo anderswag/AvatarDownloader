@@ -16,7 +16,7 @@ var getRepoContributors = require('./repoUtil');
 var download = require('./downloadUtil');
 
 // Checks that the number of arguments is correct
-if (process.argv.length <= 4 && process.argv.length > 3){
+if (process.argv.length === 4){
 
   getRepoContributors(owner, repo, function(err,response,body){
   var data = JSON.parse(body);
