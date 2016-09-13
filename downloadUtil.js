@@ -5,14 +5,14 @@ var fs = require('fs');
 
 function download(data){
 
-  if (!fs.existsSync('avatar')){
-    fs.mkdirSync('avatar');
+  if (!fs.existsSync('./avatars')){
+    fs.mkdirSync('./avatars');
   }
 
   for (var i = 0; i < data.length; i++){
-    var destination = fs.createWriteStream(`./avatar/${data[i].login}.jpg`);
+    var destination = fs.createWriteStream(`./avatars/${data[i].login}.png`);
     request(data[i].avatar_url).pipe(destination);
-    console.log(`downloaded    -> ${data[i].login}.jpg`);
+    console.log(`downloaded    -> ${data[i].login}.png`);
   }
 
   console.log('Download Complete, have a good day')
